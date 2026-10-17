@@ -1,17 +1,25 @@
 
-const DirectorList = () => {
-    // Replace me
-    const directors = []
+import { Link, useOutletContext } from "react-router-dom";
 
-    const displayDirectors = directors.map(d => (
-        <li><a>{d.name}</a></li>
-    ))
+function DirectorList() {
+  const { directors } = useOutletContext();
 
-    return (
-        <ul>
-            {displayDirectors}
-        </ul>
-    );
+  return (
+    <>
+      <h2>Directors</h2>
+      <Link to="/directors/new">Add New Director</Link>
+
+      <ul>
+        {directors.map((director) => (
+          <li key={director.id}>
+            <Link to={`/directors/${director.id}`}>
+              {director.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 }
 
 export default DirectorList;
